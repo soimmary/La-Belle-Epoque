@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
 
-token = ""
+token = "1678532360:AAG3iNv8KVbAfv61Ss6RQi-O1YdzCdI_AEg"
 
 bot = telebot.TeleBot(token)
 
@@ -13,6 +13,7 @@ def geo(message):
     keyboard.add(button_geo)
     bot.send_message(message.chat.id, "Привет! Нажми на кнопку и передай мне свое местоположение", reply_markup=keyboard)
 
+    
 @bot.message_handler(content_types=["location"])
 def location(message):
     if message.location is not None:
