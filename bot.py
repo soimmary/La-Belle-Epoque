@@ -23,16 +23,8 @@ def geo(message):
 
 
 def print_geo(message):
-    bot.send_message(message.chat.id, message.location)
     bot.send_message(message.chat.id,
                      "latitude: %s; longitude: %s" % (message.location.latitude, message.location.longitude))
-
-
-@bot.message_handler(content_types=["location"])
-def location(message):
-    if message.location is not None:
-        print(message.location)
-        print("latitude: %s; longitude: %s" % (message.location.latitude, message.location.longitude))
 
 
 if __name__ == '__main__':
