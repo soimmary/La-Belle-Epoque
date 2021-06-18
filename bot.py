@@ -1,6 +1,7 @@
+import csv
 import telebot
 from telebot import types
-
+from geopy import distance
 
 
 token = "1678532360:AAG3iNv8KVbAfv61Ss6RQi-O1YdzCdI_AEg"
@@ -21,8 +22,26 @@ def send_welcome(message):
 
 
 def print_geo(message):
-    bot.send_message(message.chat.id,
-                     "latitude: %s; longitude: %s" % (message.location.latitude, message.location.longitude))
+    with open('info.csv', 'r') as csvf:
+        reader = csv.reader(csvf, delimiter='\t')
+        next(reader, None)
+
+        distances = {}
+        from_loc = (message.location.latitude, message.location.longitude)
+
+        for elem in reader:
+            place = elem[0]
+            try:
+                fact = elem[3]
+            except IndexError:
+                fact = ''
+            to_loc = (float(elem[1]), float(elem[2]))
+            dist = round(distance.distance(from_loc, to_loc).km, 2)
+            distances[place] = (dist, fact)
+
+        places = sorted(distances.items(), key=lambda item: item[1][0])[:5]
+        for place in places:
+            bot.send_message(message.chat.id, f'📍 {place[0]}. ~{place[1][0]} км\n{place[1][1]}')
 
 
 if __name__ == '__main__':
