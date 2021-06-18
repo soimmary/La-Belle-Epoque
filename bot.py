@@ -8,17 +8,14 @@ bot = telebot.TeleBot(token)
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    bot.send_message(message.chat.id,
-                     "Привет! Этот бот показывает ближайшие места на карте, связанные с "
-                     "прекрасным Серебряным веком!")
-
-
-@bot.message_handler(commands=["geo"])
-def geo(message):
     keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
     button_geo = types.KeyboardButton(text="Отправить местоположение", request_location=True)
     keyboard.add(button_geo)
-    bot.send_message(message.chat.id, "Привет! Нажми на кнопку и передай мне свое местоположение", reply_markup=keyboard)
+    bot.send_message(message.chat.id, "Привет! Этот бот показывает ближайшие места на карте, "
+                                      "связанные с прекрасным Серебряным веком!\n"
+                                      "Нажми на кнопку и поделись со мной своим текущим "
+                                      "местоположением 🗺📍",
+                     reply_markup=keyboard)
     bot.register_next_step_handler(message, print_geo)
 
 
