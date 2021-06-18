@@ -37,12 +37,12 @@ def print_geo(message):
                 fact = ''
             to_loc = (float(elem[1]), float(elem[2]))
             dist = round(distance.distance(from_loc, to_loc).km, 2)
-            distances[place] = (dist, fact)
+            distances[place] = (dist, to_loc, fact)
 
         places = sorted(distances.items(), key=lambda item: item[1][0])[:5]
         for place in places:
-            bot.send_message(message.chat.id, f'📍 _{place[0]}_. *~{place[1][0]} км*\n{place[1][1]}', parse_mode="Markdown")
-            bot.send_location(message.chat.id, latitude=to_loc[0], longitude=to_loc[1])
+            bot.send_message(message.chat.id, f'📍 _{place[0]}_. *~{place[1][0]} км*\n{place[1][2]}', parse_mode="Markdown")
+            bot.send_location(message.chat.id, latitude=place[1][1][0], longitude=place[1][1][1])
 
 
 if __name__ == '__main__':
