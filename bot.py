@@ -13,7 +13,7 @@ def send_welcome(message):
     keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
     button_geo = types.KeyboardButton(text="Отправить местоположение", request_location=True)
     keyboard.add(button_geo)
-    bot.send_message(message.chat.id, "Привет! Этот бот показывает ближайшие места на карте, "
+    bot.send_message(message.chat.id, "Привет🤩! Этот бот показывает ближайшие места на карте, "
                                       "связанные с прекрасным Серебряным веком!\n"
                                       "Нажми на кнопку и поделись со мной своим текущим "
                                       "местоположением 🗺📍",
@@ -41,7 +41,7 @@ def print_geo(message):
 
         places = sorted(distances.items(), key=lambda item: item[1][0])[:5]
         for place in places:
-            bot.send_message(message.chat.id, f'📍 {place[0]}. ~{place[1][0]} км\n{place[1][1]}')
+            bot.send_message(message.chat.id, f'📍 <i>{place[0]}</i>. <b>~{place[1][0]} км</b>\n{place[1][1]}')
 
 
 if __name__ == '__main__':
