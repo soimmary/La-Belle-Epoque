@@ -19,7 +19,7 @@ def geo(message):
     button_geo = types.KeyboardButton(text="Отправить местоположение", request_location=True)
     keyboard.add(button_geo)
     bot.send_message(message.chat.id, "Привет! Нажми на кнопку и передай мне свое местоположение", reply_markup=keyboard)
-    bot.register_next_step_handler(message, print_geo())
+    bot.register_next_step_handler(message, print_geo)
 
 
 def print_geo(message):
