@@ -41,7 +41,7 @@ def print_geo(message):
 
         places = sorted(distances.items(), key=lambda item: item[1][0])[:5]
         for place in places:
-            bot.send_message(message.chat.id, f'📍 <i>{place[0]}</i>. <b>~{place[1][0]} км</b>\n{place[1][1]}', parse_mode=telegram.ParseMode.HTML)
+            bot.send_message(message.chat.id, f'📍 {place[0]}. ~{place[1][0]} км\n{place[1][1]}')
 
 
 if __name__ == '__main__':
