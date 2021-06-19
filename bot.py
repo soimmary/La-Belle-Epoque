@@ -23,7 +23,7 @@ def send_welcome(message):
 
 def print_geo(message):
     with open('info.csv', 'r') as csvf:
-        reader = csv.reader(csvf, delimiter='\t')
+        reader = csv.reader(csvf, delimiter=';')
         next(reader, None)
 
         distances = {}
